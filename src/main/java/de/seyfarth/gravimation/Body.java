@@ -1,5 +1,6 @@
 package de.seyfarth.gravimation;
 
+import de.seyfarth.math.MathUtil;
 import de.seyfarth.math.Point;
 import de.seyfarth.math.Vector;
 import java.math.BigDecimal;
@@ -16,19 +17,18 @@ public class Body {
     
     private Paint color = Color.BLACK;
     private Paint oldColor = Color.GRAY;
-    private double size = 10;
+    private double size;
 
     public Body(BigDecimal mass, Point location, Vector velocity) {
         this.mass = mass;
         this.location = location;
         this.oldLocation = location;
         this.velocity = velocity;
+        this.size = MathUtil.root(mass, 3, 1024).doubleValue();
     }
     
     public Body(BigDecimal mass, Point location) {
-        this.mass = mass;
-        this.location = location;
-        this.velocity = new Vector();
+        this(mass, location, new Vector());
     }
     
     public BigDecimal getMass() {
