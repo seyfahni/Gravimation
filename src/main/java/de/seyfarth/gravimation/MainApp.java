@@ -32,14 +32,16 @@ public class MainApp extends Application {
         window.setScene(new Scene(root));
         window.show();
 
-        World world = new World(new BigDecimal("500"));
-
-        sunPlanetMoon(world);
-        //hyperbelSwingBy(world);
-        //normalOrbit(world);
-        //acceleratedOrbit(world);
-        //doubleNormalOrbit(world);
-        //workInProgress(world);
+        World world =
+            //sunPlanetMoon();
+            //hyperbelSwingBy();
+            //normalOrbit();
+            //acceleratedOrbit();
+            //doubleNormalOrbit();
+            //twoSunsOverlaping();
+            //twoSunsNice();
+            //twoSunsPlanets();
+            workInProgress();
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -75,7 +77,8 @@ public class MainApp extends Application {
         service.start();
     }
 
-    private void sunPlanetMoon(World world) {
+    private World sunPlanetMoon() {
+        World world = new World(new BigDecimal("500"));
         world.addBody(new Body(
             new BigDecimal("10000000"),
             new Point(new BigDecimal("0"), new BigDecimal("0")),
@@ -99,9 +102,11 @@ public class MainApp extends Application {
             .setOldColor(Color.GRAY.brighter())
             .setSize(4)
         );
+        return world;
     }
 
-    private void normalOrbit(World world) {
+    private World normalOrbit() {
+        World world = new World(new BigDecimal("500"));
         world.addBody(new Body(
             new BigDecimal("10000000"),
             new Point(new BigDecimal("0"), new BigDecimal("0")),
@@ -117,9 +122,11 @@ public class MainApp extends Application {
             .setColor(Color.LIGHTSKYBLUE.darker())
             .setOldColor(Color.LIGHTBLUE.brighter())
         );
+        return world;
     }
 
-    private void hyperbelSwingBy(World world) {
+    private World hyperbelSwingBy() {
+        World world = new World(new BigDecimal("500"));
         world.addBody(new Body(
             new BigDecimal("400000000"),
             new Point(new BigDecimal("0"), new BigDecimal("0")),
@@ -135,9 +142,11 @@ public class MainApp extends Application {
             .setColor(Color.BLACK)
             .setOldColor(Color.GRAY)
         );
+        return world;
     }
     
-    private void acceleratedOrbit(World world) {
+    private World acceleratedOrbit() {
+        World world = new World(new BigDecimal("500"));
         world.addBody(new Body(
             new BigDecimal("400000000"),
             new Point(new BigDecimal("200"), new BigDecimal("-100")),
@@ -153,9 +162,11 @@ public class MainApp extends Application {
             .setColor(Color.DARKGREEN)
             .setOldColor(Color.LIGHTGREEN)
         );
+        return world;
     }
     
-    private void doubleNormalOrbit(World world) {
+    private World doubleNormalOrbit() {
+        World world = new World(new BigDecimal("500"));
         world.addBody(new Body(
             new BigDecimal("400000038"),
             new Point(new BigDecimal("0"), new BigDecimal("0")),
@@ -178,33 +189,125 @@ public class MainApp extends Application {
             new Vector(new BigDecimal("-8007"), new BigDecimal("-40002")))
             .setColor(Color.BROWN)
             .setOldColor(Color.BURLYWOOD)
+            .setSize(10)
         );
+        return world;
     }
     
-    private void workInProgress(World world) {
+    private World twoSunsOverlaping() {
+        World world = new World(new BigDecimal("500"));
         world.addBody(new Body(
             new BigDecimal("400000038"),
-            new Point(new BigDecimal("0"), new BigDecimal("0")),
-            new Vector(new BigDecimal("0"), new BigDecimal("0")))
+            new Point(new BigDecimal("-100"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("25000")))
             .setColor(Color.ORANGERED)
-            .setOldColor(Color.ORANGERED)
+            .setOldColor(Color.ORANGE)
             .setSize(30)
         );
         world.addBody(new Body(
+            new BigDecimal("400000038"),
+            new Point(new BigDecimal("100"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-25000")))
+            .setColor(Color.LIGHTSKYBLUE)
+            .setOldColor(Color.LAVENDER)
+            .setSize(30)
+        );
+        return world;
+    }
+    
+    private World twoSunsNice() {
+        World world = new World(new BigDecimal("500"));
+        world.addBody(new Body(
+            new BigDecimal("600000000"),
+            new Point(new BigDecimal("-40"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("20000")))
+            .setColor(Color.ORANGERED)
+            .setOldColor(Color.ORANGE)
+            .setSize(35)
+        );
+        world.addBody(new Body(
+            new BigDecimal("300000000"),
+            new Point(new BigDecimal("100"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-40000")))
+            .setColor(Color.LIGHTSKYBLUE)
+            .setOldColor(Color.LAVENDER)
+            .setSize(25)
+        );
+        return world;
+    }
+    
+    private World twoSunsPlanets() {
+        World world = new World(new BigDecimal("500"));
+        world.addBody(new Body(
+            new BigDecimal("600000000"),
+            new Point(new BigDecimal("-40"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("20000")))
+            .setColor(Color.ORANGERED)
+            .setOldColor(Color.ORANGE)
+            .setSize(35)
+        );
+        world.addBody(new Body(
+            new BigDecimal("300000000"),
+            new Point(new BigDecimal("100"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-40000")))
+            .setColor(Color.LIGHTSKYBLUE)
+            .setOldColor(Color.LAVENDER)
+            .setSize(25)
+        );
+        world.addBody(new Body(
             new BigDecimal("0.01"),
-            new Point(new BigDecimal("53"), new BigDecimal("25")),
-            new Vector(new BigDecimal("20000"), new BigDecimal("-50000")))
+            new Point(new BigDecimal("25"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-50000")))
             .setColor(Color.DARKGREEN)
             .setOldColor(Color.LIGHTGREEN)
             .setSize(5)
         );
         world.addBody(new Body(
             new BigDecimal("0.03"),
-            new Point(new BigDecimal("122"), new BigDecimal("-24")),
-            new Vector(new BigDecimal("-8007"), new BigDecimal("-40002")))
+            new Point(new BigDecimal("222"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("50000")))
             .setColor(Color.BROWN)
             .setOldColor(Color.BURLYWOOD)
+            .setSize(10)
         );
+        return world;
+    }
+    
+    private World workInProgress() {
+        World world = new World(new BigDecimal("500"));
+        world.addBody(new Body(
+            new BigDecimal("600000000"),
+            new Point(new BigDecimal("-40"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("20000")))
+            .setColor(Color.ORANGERED)
+            .setOldColor(Color.ORANGE)
+            .setSize(35)
+        );
+        world.addBody(new Body(
+            new BigDecimal("300000000"),
+            new Point(new BigDecimal("100"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-40000")))
+            .setColor(Color.LIGHTSKYBLUE)
+            .setOldColor(Color.LAVENDER)
+            .setSize(25)
+        );
+        world.addBody(new Body(
+            new BigDecimal("0.01"),
+            new Point(new BigDecimal("25"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-50000")))
+            .setColor(Color.DARKGREEN)
+            .setOldColor(Color.LIGHTGREEN)
+            .setSize(5)
+        );
+        world.addBody(new Body(
+            new BigDecimal("0.03"),
+            new Point(new BigDecimal("222"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("50000")))
+            .setColor(Color.BROWN)
+            .setOldColor(Color.BURLYWOOD)
+            .setSize(10)
+        );
+        return world;
     }
     
 //<editor-fold defaultstate="collapsed" desc="unused">
