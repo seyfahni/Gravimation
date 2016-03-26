@@ -41,17 +41,15 @@ public class MainApp extends Application {
             //twoSunsOverlaping();
             //twoSunsNice();
             //twoSunsPlanets();
+            //chaos();
             workInProgress();
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         ScheduledService<Void> service = new ScheduledService<Void>() {
-
-            @Override
-            protected Task<Void> createTask() {
+            @Override protected Task<Void> createTask() {
                 return new Task<Void>() {
-                    @Override
-                    protected Void call() {
+                    @Override protected Void call() {
                         world.getBodies().forEach(body -> {
                             gc.setFill(body.getOldColor());
                             gc.fillOval(
@@ -136,7 +134,7 @@ public class MainApp extends Application {
             .setSize(30)
         );
         world.addBody(new Body(
-            new BigDecimal("0.01"),
+            new BigDecimal("27"),
             new Point(new BigDecimal("53"), new BigDecimal("290")),
             new Vector(new BigDecimal("-400"), new BigDecimal("-70000")))
             .setColor(Color.BLACK)
@@ -255,12 +253,12 @@ public class MainApp extends Application {
             .setSize(25)
         );
         world.addBody(new Body(
-            new BigDecimal("0.01"),
-            new Point(new BigDecimal("25"), new BigDecimal("0")),
-            new Vector(new BigDecimal("0"), new BigDecimal("-50000")))
-            .setColor(Color.DARKGREEN)
-            .setOldColor(Color.LIGHTGREEN)
-            .setSize(5)
+            new BigDecimal("0.2"),
+            new Point(new BigDecimal("123"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-120000")))
+            .setColor(Color.DARKMAGENTA)
+            .setOldColor(Color.CRIMSON)
+            .setSize(7)
         );
         world.addBody(new Body(
             new BigDecimal("0.03"),
@@ -273,9 +271,9 @@ public class MainApp extends Application {
         return world;
     }
     
-    private World workInProgress() {
+    private World chaos() {
         World world = new World(new BigDecimal("500"));
-        world.addBody(new Body(
+        world.addBody(new Body( // stabil
             new BigDecimal("600000000"),
             new Point(new BigDecimal("-40"), new BigDecimal("0")),
             new Vector(new BigDecimal("0"), new BigDecimal("20000")))
@@ -283,7 +281,7 @@ public class MainApp extends Application {
             .setOldColor(Color.ORANGE)
             .setSize(35)
         );
-        world.addBody(new Body(
+        world.addBody(new Body( // stabil
             new BigDecimal("300000000"),
             new Point(new BigDecimal("100"), new BigDecimal("0")),
             new Vector(new BigDecimal("0"), new BigDecimal("-40000")))
@@ -291,7 +289,15 @@ public class MainApp extends Application {
             .setOldColor(Color.LAVENDER)
             .setSize(25)
         );
-        world.addBody(new Body(
+        world.addBody(new Body( // stabil
+            new BigDecimal("0.2"),
+            new Point(new BigDecimal("123"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-120000")))
+            .setColor(Color.DARKMAGENTA)
+            .setOldColor(Color.CRIMSON)
+            .setSize(7)
+        );
+        world.addBody(new Body( // instabil
             new BigDecimal("0.01"),
             new Point(new BigDecimal("25"), new BigDecimal("0")),
             new Vector(new BigDecimal("0"), new BigDecimal("-50000")))
@@ -299,13 +305,72 @@ public class MainApp extends Application {
             .setOldColor(Color.LIGHTGREEN)
             .setSize(5)
         );
-        world.addBody(new Body(
+        world.addBody(new Body( // stabil
             new BigDecimal("0.03"),
             new Point(new BigDecimal("222"), new BigDecimal("0")),
             new Vector(new BigDecimal("0"), new BigDecimal("50000")))
             .setColor(Color.BROWN)
             .setOldColor(Color.BURLYWOOD)
             .setSize(10)
+        );
+        world.addBody(new Body( // instabil
+            new BigDecimal("27"),
+            new Point(new BigDecimal("53"), new BigDecimal("290")),
+            new Vector(new BigDecimal("-400"), new BigDecimal("-70000")))
+            .setColor(Color.BLACK)
+            .setOldColor(Color.GRAY)
+        );
+        return world;
+    }
+    
+    private World workInProgress() {
+        World world = new World(new BigDecimal("500"));
+        world.addBody(new Body( // stabil
+            new BigDecimal("600000000"),
+            new Point(new BigDecimal("-40"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("20000")))
+            .setColor(Color.ORANGERED)
+            .setOldColor(Color.ORANGE)
+            .setSize(35)
+        );
+        world.addBody(new Body( // stabil
+            new BigDecimal("300000000"),
+            new Point(new BigDecimal("100"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-40000")))
+            .setColor(Color.LIGHTSKYBLUE)
+            .setOldColor(Color.LAVENDER)
+            .setSize(25)
+        );
+        world.addBody(new Body( // stabil
+            new BigDecimal("0.2"),
+            new Point(new BigDecimal("123"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-120000")))
+            .setColor(Color.DARKMAGENTA)
+            .setOldColor(Color.CRIMSON)
+            .setSize(7)
+        );
+        world.addBody(new Body( // instabil
+            new BigDecimal("0.01"),
+            new Point(new BigDecimal("25"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-50000")))
+            .setColor(Color.DARKGREEN)
+            .setOldColor(Color.LIGHTGREEN)
+            .setSize(5)
+        );
+        world.addBody(new Body( // stabil
+            new BigDecimal("0.03"),
+            new Point(new BigDecimal("222"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("50000")))
+            .setColor(Color.BROWN)
+            .setOldColor(Color.BURLYWOOD)
+            .setSize(10)
+        );
+        world.addBody(new Body( // instabil
+            new BigDecimal("27"),
+            new Point(new BigDecimal("53"), new BigDecimal("290")),
+            new Vector(new BigDecimal("-400"), new BigDecimal("-70000")))
+            .setColor(Color.BLACK)
+            .setOldColor(Color.GRAY)
         );
         return world;
     }
@@ -333,5 +398,4 @@ public class MainApp extends Application {
         launch(args);
     }
 //</editor-fold>
-
 }
