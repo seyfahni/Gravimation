@@ -76,29 +76,27 @@ public class MainApp extends Application {
     }
 
     private World sunPlanetMoon() {
-        World world = new World(new BigDecimal("500"));
-        world.addBody(new Body(
-            new BigDecimal("10000000"),
+        World world = new World(new BigDecimal("10000"));
+        world.addBody(new Body( // Sun
+            new BigDecimal("1728000"),
             new Point(new BigDecimal("0"), new BigDecimal("0")),
-            new Vector(new BigDecimal("0"), new BigDecimal("0")))
-            .setColor(Color.ORANGERED)
-            .setOldColor(Color.ORANGE)
-            .setSize(40)
+            new Vector(new BigDecimal("-4"), new BigDecimal("15")))
+            .setColor(Color.LIGHTSKYBLUE)
+            .setOldColor(Color.LAVENDER)
         );
-        world.addBody(new Body(
-            new BigDecimal("10000"),
-            new Point(new BigDecimal("150"), new BigDecimal("0")),
-            new Vector(new BigDecimal("3"), new BigDecimal("-6000")))
-            .setColor(Color.LIGHTBLUE.darker())
-            .setOldColor(Color.LIGHTBLUE.brighter())
+        world.addBody(new Body( // Planet
+            new BigDecimal("10648"),
+            new Point(new BigDecimal("100"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-12750")))
+            .setColor(Color.DARKGREEN)
+            .setOldColor(Color.LIGHTGREEN)
         );
-        world.addBody(new Body(
-            new BigDecimal("0.000001"),
-            new Point(new BigDecimal("153"), new BigDecimal("-5")),
-            new Vector(new BigDecimal("400"), new BigDecimal("-6050")))
-            .setColor(Color.BLACK)
-            .setOldColor(Color.GRAY.brighter())
-            .setSize(4)
+        world.addBody(new Body( // Moon
+            new BigDecimal("27"),
+            new Point(new BigDecimal("108.5"), new BigDecimal("0")),
+            new Vector(new BigDecimal("0"), new BigDecimal("-9000")))
+            .setColor(Color.RED)
+            .setOldColor(Color.LIGHTGREEN)
         );
         return world;
     }
