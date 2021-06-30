@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public final class Point {
-    
+
     private final BigDecimal[] values;
 
     public Point(BigDecimal... values) {
@@ -19,7 +19,7 @@ public final class Point {
             }
         }
     }
-    
+
     public BigDecimal getValue(int dimension) {
         if (dimension < 0) {
             throw new IndexOutOfBoundsException("smaller than zero");
@@ -33,15 +33,15 @@ public final class Point {
     public int getDimension() {
         return getValues().length;
     }
-    
+
     public BigDecimal[] getValues() {
         return Arrays.copyOf(values, values.length);
     }
-    
+
     public Vector positionVector() {
         return new Vector(getValues());
     }
-    
+
     public Point move(Vector vector) {
         final int maxDimension = Math.max(getDimension(), vector.getDimension());
         BigDecimal[] moved = new BigDecimal[maxDimension];
@@ -50,16 +50,16 @@ public final class Point {
         }
         return new Point(moved);
     }
-    
+
     public Point toDimension(int targetDimension) {
         return new Point(Arrays.copyOf(getValues(), targetDimension));
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         return obj instanceof Point
-            && obj.hashCode() == this.hashCode()
-            && valuesEquals((Point) obj);
+                && obj.hashCode() == this.hashCode()
+                && valuesEquals((Point) obj);
     }
 
     @Override
@@ -77,10 +77,10 @@ public final class Point {
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
         return "Point: " + Arrays.toString(getValues());
     }
-    
+
 }

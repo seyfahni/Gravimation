@@ -2,6 +2,7 @@ package de.seyfarth.gravimation;
 
 import de.seyfarth.math.MathUtil;
 import de.seyfarth.math.Vector;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Collections;
@@ -12,7 +13,7 @@ public class World {
 
     private final List<Body> bodies = new CopyOnWriteArrayList<>();
     private final BigDecimal gravConst;
-    
+
     public World(BigDecimal gravitationalConstant) {
         gravConst = gravitationalConstant;
     }
@@ -20,11 +21,11 @@ public class World {
     public void addBody(Body body) {
         bodies.add(body);
     }
-    
+
     public List<Body> getBodies() {
         return Collections.unmodifiableList(bodies);
     }
-    
+
     public void calculateGravitationStep(BigDecimal deltaTime) {
         calculateForceOnEachBody();
         applyForceOnEachBody(deltaTime);
@@ -40,9 +41,9 @@ public class World {
                 Vector vRelToAct = vActToRel.invert();
                 BigDecimal distance = distanceVector.length();
                 BigDecimal force = gravConst
-                    .multiply(actual.getMass())
-                    .multiply(related.getMass())
-                    .divide(distance.multiply(distance), 1024, RoundingMode.HALF_UP);
+                        .multiply(actual.getMass())
+                        .multiply(related.getMass())
+                        .divide(distance.multiply(distance), 1024, RoundingMode.HALF_UP);
                 actual.addForce(vActToRel.multiply(force));
                 related.addForce(vRelToAct.multiply(force));
             }
@@ -53,5 +54,4 @@ public class World {
         bodies.parallelStream().forEach(body -> body.applyAllForces(deltaTime));
     }
 
-    
 }

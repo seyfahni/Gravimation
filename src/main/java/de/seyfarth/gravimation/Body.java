@@ -3,7 +3,11 @@ package de.seyfarth.gravimation;
 import de.seyfarth.math.MathUtil;
 import de.seyfarth.math.Point;
 import de.seyfarth.math.Vector;
+
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
@@ -14,7 +18,7 @@ public class Body {
     private Point oldLocation;
     private Vector velocity;
     private Vector force = new Vector();
-    
+
     private Paint color = Color.BLACK;
     private Paint oldColor = Color.GRAY;
     private double size;
@@ -24,17 +28,17 @@ public class Body {
         this.location = location;
         this.oldLocation = location;
         this.velocity = velocity;
-        this.size = MathUtil.root(mass, 3, 1024).doubleValue();
+        this.size = MathUtil.root(mass, 3, new MathContext(1024, RoundingMode.HALF_UP)).doubleValue();
     }
-    
+
     public Body(BigDecimal mass, Point location) {
         this(mass, location, new Vector());
     }
-    
+
     public BigDecimal getMass() {
         return mass;
     }
-    
+
     public Point getLocation() {
         return location;
     }
@@ -50,14 +54,14 @@ public class Body {
     public void addForce(Vector force) {
         this.force = this.force.add(force);
     }
-    
+
     public void applyAllForces(BigDecimal deltaTime) {
         oldLocation = location;
         velocity = getAcceleration().multiply(deltaTime).add(velocity);
         location = location.move(velocity.multiply(deltaTime));
         force = new Vector();
     }
-    
+
     public Vector getAcceleration() {
         return force.divide(mass);
     }
@@ -88,5 +92,5 @@ public class Body {
         this.oldColor = oldColor;
         return this;
     }
-    
+
 }

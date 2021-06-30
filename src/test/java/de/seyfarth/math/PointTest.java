@@ -18,13 +18,14 @@ public class PointTest {
 
     @Test
     public void createPointEmpty() {
-        Point point = new Point();
+        new Point();
     }
     
     @Test(expected = NullPointerException.class)
     public void createPointNull() {
         BigDecimal[] nullArray = null;
-        Point point = new Point(nullArray);
+        //noinspection ConstantConditions
+        new Point(nullArray);
     }
     
     @Test
@@ -36,7 +37,7 @@ public class PointTest {
     
     @Test
     public void createPointValid() {
-        Point point = new Point(defaultValues);
+        new Point(defaultValues);
     }
     
     @Test(expected = IndexOutOfBoundsException.class)
@@ -93,7 +94,7 @@ public class PointTest {
     public void toDimensionSmaller() {
         final Point point = new Point(defaultValues);
         final Point actual = point.toDimension(defaultValues.length - 2);
-        assertTrue(actual.getDimension() == defaultValues.length - 2);
+        assertEquals(actual.getDimension(), defaultValues.length - 2);
     }
 
     @Test
@@ -102,7 +103,7 @@ public class PointTest {
         final Point expected = new Point(defaultValues);
         final Point actual = point.toDimension(defaultValues.length + 2);
         assertEquals(expected, actual);
-        assertTrue(actual.getDimension() == defaultValues.length + 2);
+        assertEquals(actual.getDimension(), defaultValues.length + 2);
     }
     
     @Test

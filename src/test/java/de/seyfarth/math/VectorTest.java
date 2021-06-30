@@ -18,13 +18,14 @@ public class VectorTest {
 
     @Test
     public void createVectorEmpty() {
-        Vector vector = new Vector();
+        new Vector();
     }
     
     @Test(expected = NullPointerException.class)
     public void createVectorNull() {
         BigDecimal[] nullArray = null;
-        Vector vector = new Vector(nullArray);
+        //noinspection ConstantConditions
+        new Vector(nullArray);
     }
     
     @Test
@@ -36,7 +37,7 @@ public class VectorTest {
     
     @Test
     public void createVectorValid() {
-        Vector vector = new Vector(defaultValues);
+        new Vector(defaultValues);
     }
     
     @Test(expected = IndexOutOfBoundsException.class)
@@ -192,15 +193,15 @@ public class VectorTest {
     }
 
     @Test
-    public void lenthIsZero() {
+    public void lengthIsZero() {
         final Vector vector = new Vector();
-        assertTrue(new BigDecimal("0").compareTo(vector.length()) == 0);
+        assertEquals(0, new BigDecimal("0").compareTo(vector.length()));
     }
     
     @Test
-    public void lenthNonZero() {
+    public void lengthNonZero() {
         final Vector vector = new Vector(new BigDecimal("3"), new BigDecimal("4"));
-        assertTrue(new BigDecimal("5").compareTo(vector.length()) == 0);
+        assertEquals(0, new BigDecimal("5").compareTo(vector.length()));
     }
     
     @Test(expected = ArithmeticException.class)
@@ -229,7 +230,7 @@ public class VectorTest {
     public void toDimensionSmaller() {
         final Vector vector = new Vector(defaultValues);
         final Vector actual = vector.toDimension(defaultValues.length - 2);
-        assertTrue(actual.getDimension() == defaultValues.length - 2);
+        assertEquals(actual.getDimension(), defaultValues.length - 2);
     }
 
     @Test
@@ -238,7 +239,7 @@ public class VectorTest {
         final Vector expected = new Vector(defaultValues);
         final Vector actual = vector.toDimension(defaultValues.length + 2);
         assertEquals(expected, actual);
-        assertTrue(actual.getDimension() == defaultValues.length + 2);
+        assertEquals(actual.getDimension(), defaultValues.length + 2);
     }
 
 }
